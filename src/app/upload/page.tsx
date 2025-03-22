@@ -6,7 +6,7 @@ import { X } from 'lucide-react'
 import { useState, ChangeEvent } from 'react'
 import { toast } from 'react-toastify'
 
-const ACCEPTED_FILE_TYPES = ['.kml', '.geojson', '.shp', '.gpx', '.zip']
+const ACCEPTED_FILE_TYPES = ['.kml', '.geojson', '.shp', '.zip']
 
 export default function UploadPage() {
   const [selectedFiles, setSelectedFiles] = useState<File[] | undefined>()
