@@ -1,5 +1,6 @@
 'use client'
 
+import { Footer } from '@/components/footer'
 import { Header } from '@/components/header'
 import { MapList, MapType } from '@/components/map-list'
 import { useEffect, useState } from 'react'
@@ -36,7 +37,7 @@ export default function Home() {
   return (
     <main className="w-full flex flex-col min-h-screen">
       <Header />
-      <div className="container mx-auto py-8">
+      <div className="container mx-auto py-8 flex-1">
         {isLoading
           ? (
             <div>Carregando mapas...</div>
@@ -49,6 +50,7 @@ export default function Home() {
               <MapList mapas={mapas || []} />
               )}
       </div>
+      <Footer />
     </main>
   )
 }

@@ -54,7 +54,7 @@ export function MapList({ mapas }: MapListProps): JSX.Element | null {
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 p-4">
       {mapas.map((mapa) => (
-        <div key={mapa.id} className="bg-white rounded shadow-md overflow-hidden">
+        <div key={mapa.id} className="bg-gray-100 rounded drop-shadow-lg overflow-hidden">
           <h3 className="p-2 font-semibold text-center">{mapa.nome}</h3>
           <div style={{ height: '300px', width: '100%' }}>
             <LeafletMapContainer

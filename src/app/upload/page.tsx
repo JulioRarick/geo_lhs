@@ -1,6 +1,7 @@
 'use client'
 
 import { FileUploadButton } from '@/components/file-upload-button'
+import { Footer } from '@/components/footer'
 import { Header } from '@/components/header'
 import { X } from 'lucide-react'
 import { useState, ChangeEvent } from 'react'
@@ -79,8 +80,8 @@ export default function UploadPage() {
   }
 
   return (
-    <main className="w-full min-h-screen h-screen bg-gray-100 ">
-      <section className="h-full flex flex-col items-center w-full">
+    <main className="w-full min-h-screen flex flex-col h-screen bg-gray-100 ">
+      <section className="h-full flex flex-col items-center flex-1 w-full">
         <Header />
         <section className="flex gap-4 flex-col w-full h-full flex-1 items-center justify-center">
           <article className="bg-white flex items-center gap-4 justify-center flex-col p-8 rounded shadow-md w-xl">
@@ -128,6 +129,7 @@ export default function UploadPage() {
           <p className="text-gray-600 mt-2">Envie arquivos de mapas para serem exibidos na aplicação.</p>
         </section>
       </section>
+      <Footer />
     </main>
   )
 }
