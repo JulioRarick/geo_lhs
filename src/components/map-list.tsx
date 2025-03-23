@@ -6,6 +6,7 @@ import 'leaflet/dist/leaflet.css'
 import type { GeoJsonObject } from 'geojson'
 import dynamic from 'next/dynamic'
 import SingleMap from './single-map'
+import Link from 'next/link'
 
 export interface MapType {
   id: string;
@@ -55,7 +56,7 @@ export function MapList({ mapas }: MapListProps): JSX.Element | null {
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 p-4">
       {mapas.map((mapa) => (
         <div key={mapa.id} className="bg-gray-100 rounded drop-shadow-lg overflow-hidden">
-          <h3 className="p-2 font-semibold text-center">{mapa.nome}</h3>
+          <Link href={`/map/${mapa.id}`} className="p-4 w-full flex items-center justify-center font-semibold hover:text-blue-600 hover:underline text-center text-lg">{mapa.nome}</Link>
           <div style={{ height: '300px', width: '100%' }}>
             <LeafletMapContainer
               center={

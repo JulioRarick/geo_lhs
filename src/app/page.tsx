@@ -2,8 +2,13 @@
 
 import { Footer } from '@/components/footer'
 import { Header } from '@/components/header'
-import { MapList, MapType } from '@/components/map-list'
+import { MapType } from '@/components/map-list'
+import dynamic from 'next/dynamic'
 import { useEffect, useState } from 'react'
+
+const MapList = dynamic(() => import('../components/map-list').then((mod) => mod.MapList), {
+  ssr: false,
+})
 
 export default function Home() {
   const [mapas, setMapas] = useState<MapType[]>()

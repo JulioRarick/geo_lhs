@@ -8,6 +8,7 @@ import { ToastContainer } from 'react-toastify'
 const geistSans = Geist({
   variable: '--font-geist-sans',
   subsets: ['latin'],
+  weight: ['100', '200', '300', '400', '500', '600', '700', '800', '900']
 })
 
 const geistMono = Geist_Mono({
@@ -29,7 +30,7 @@ export default function RootLayout({
   return (
     <html lang="pt-br">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} font-sans antialiased scroll-smooth bg-gray-50 text-gray-950`}
+        className={`${geistSans.variable} ${geistMono.variable} font-sans select-none antialiased scroll-smooth bg-gray-50 text-gray-950`}
       >
         <ToastContainer position="top-right" autoClose={5000} hideProgressBar={false} newestOnTop closeOnClick rtl={false} pauseOnFocusLoss draggable pauseOnHover theme="light" />
         {children}
