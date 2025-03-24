@@ -42,19 +42,29 @@ export default function Home() {
   return (
     <main className="w-full flex flex-col min-h-screen">
       <Header />
-      <div className="container mx-auto py-8 flex-1">
+      <section className="container mx-auto py-8 flex-1">
         {isLoading
           ? (
-            <div>Carregando mapas...</div>
+            <article className="w-full h-full flex items-center justify-center">
+              <h1 className="text-2xl text-gray-500">
+                Carregando mapas...
+              </h1>
+            </article>
             )
           : error
             ? (
-              <div className="text-red-500">Erro ao carregar os mapas: {error}</div>
+              <section className="text-red-500">
+                <article className="w-full h-full flex items-center justify-center">
+                  <h1>
+                    Erro ao carregar os mapas: {error}
+                  </h1>
+                </article>
+              </section>
               )
             : (
               <MapList mapas={mapas || []} />
               )}
-      </div>
+      </section>
       <Footer />
     </main>
   )
