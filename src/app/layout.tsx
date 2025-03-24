@@ -19,7 +19,8 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: 'GeoLHS',
-  description: 'História - UnB',
+  description: 'LHS | História | UnB',
+  creator: 'Code by Júlio Rarick'
 }
 
 export default function RootLayout({
