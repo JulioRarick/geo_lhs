@@ -25,7 +25,7 @@ export default function Map() {
       setError(null)
 
       try {
-        const response = await fetch(`/api/map/${filename}`)
+        const response = await fetch(`/geo_lhs/api/map/${filename}`)
 
         if (!response.ok) {
           const errorText = await response.text()

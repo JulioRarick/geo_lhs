@@ -73,7 +73,7 @@ export default function UploadPage() {
 
     try {
       setUploadStatus('Enviando arquivos...')
-      const response = await fetch('/api/upload-map', {
+      const response = await fetch('/geo_lhs/api/upload-map', {
         method: 'POST',
         body: formData,
       })
