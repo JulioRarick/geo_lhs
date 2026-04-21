@@ -4,25 +4,21 @@ import { promises as fs } from 'fs'
 import AdmZip from 'adm-zip'
 import { parseZip } from 'shpjs'
 import { XMLParser } from 'fast-xml-parser'
-import { FeatureCollection, } from 'geojson'
+import { FeatureCollection } from 'geojson'
 import { kmlToGeoJSON } from './kml-to-json'
 
 export async function POST(request: Request) {
   try {
     const formData = await request.formData()
     const files = formData.getAll('mapFiles') as File[]
-    const uploadDir = path.join(process.cwd(), 'public/uploads')
+    const uploadDir = path.join(process.cwd(), 'public', 'uploads')
     await fs.mkdir(uploadDir, { recursive: true })
-
-    const uploadedFileUrls: string[] = []
 
     for (const file of files) {
       const fileExtension = file.name.toLowerCase().split('.').pop()
       const originalFilenameWithoutExt = file.name.substring(0, file.name.lastIndexOf('.'))
       const outputFilename = `${originalFilenameWithoutExt}.geojson`
       const outputFilePath = path.join(uploadDir, outputFilename)
-      const outputFileUrl = `/public/uploads/${outputFilename}`
-      uploadedFileUrls.push(outputFileUrl)
 
       const buffer = await file.arrayBuffer()
       const fileContent = Buffer.from(new Uint8Array(buffer)).toString('utf-8')
@@ -76,13 +72,13 @@ export async function POST(request: Request) {
         }
       } else {
         console.warn(`Tipo de arquivo não suportado para conversão: ${fileExtension}`)
-        return NextResponse.json({ message: `Tipo de arquivo não suportado: ${file.name}. Apenas GeoJSON, KML, SHP (em ZIP) e GPX são suportados.` }, { status: 400 })
+        return NextResponse.json({ message: `Tipo de arquivo não suportado: ${file.name}. Apenas GeoJSON, KML e SHP (em ZIP) são suportados.` }, { status: 400 })
       }
     }
 
     const uploadedGeoJSONUrls = (await fs.readdir(uploadDir))
       .filter(f => f.endsWith('.geojson'))
-      .map(f => `/public/uploads/${f}`)
+      .map(f => `/uploads/${f}`)
 
     return NextResponse.json({ message: 'Arquivos convertidos para GeoJSON com sucesso!', urls: uploadedGeoJSONUrls }, { status: 200 })
   } catch (error) {

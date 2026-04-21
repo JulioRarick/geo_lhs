@@ -6,14 +6,14 @@ import { GeoJsonObject } from 'geojson'
 
 export async function GET() {
   try {
-    const uploadDir = path.join(process.cwd(), 'public/uploads')
+    const uploadDir = path.join(process.cwd(), 'public', 'uploads')
     const files = await fs.readdir(uploadDir)
     const geojsonFiles = files.filter(file => file.toLowerCase().endsWith('.geojson'))
     const mapas: MapType[] = []
 
     for (const file of geojsonFiles) {
       const filePath = path.join(uploadDir, file)
-      const fileUrl = `/public/uploads/${file}`
+      const fileUrl = `/uploads/${file}`
       const fileNameWithoutExtension = file.substring(0, file.lastIndexOf('.'))
 
       try {
