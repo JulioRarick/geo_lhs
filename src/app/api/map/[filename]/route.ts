@@ -2,27 +2,27 @@ import { NextResponse } from 'next/server'
 import fs from 'fs/promises'
 import path from 'path'
 import { MapType } from '@/components/map-list'
-import { Params } from 'next/dist/server/request/params'
 import { GeoJsonObject } from 'geojson'
 
-export async function GET(request: Request, {
-  params
-}: { params: Params }): Promise<Response> {
+export async function GET(
+  request: Request,
+  { params }: { params: Promise<{ filename: string }> }
+): Promise<Response> {
   const { filename } = await params
 
   const textFilename = filename?.toLocaleString() || ''
 
   try {
-    const uploadDir = path.join(process.cwd(), 'public/uploads')
+    const uploadDir = path.join(process.cwd(), 'public', 'uploads')
 
     const filePath = path.join(uploadDir, textFilename)
-    const fileUrl = `/public/uploads/${textFilename}`
+    const fileUrl = `/uploads/${textFilename}`
     const filenameWithoutExtension = textFilename?.substring(0, textFilename.lastIndexOf('.'))
 
     const fileContent = await fs.readFile(filePath, 'utf-8')
     const geoJsonData: GeoJsonObject = JSON.parse(fileContent)
     const mapData: MapType = {
-      id: fileUrl,
+      id: textFilename,
       nome: filenameWithoutExtension,
       url: fileUrl,
       geoJsonData
